@@ -278,7 +278,7 @@ func (s *Session) Close(tx *world.Tx, c Controllable) {
 // manages.
 func (s *Session) close(tx *world.Tx, c Controllable) {
 	c.MoveItemsToInventory()
-	s.closeCurrentContainer(tx)
+	s.closeCurrentContainer(tx, false)
 
 	s.conf.HandleStop(tx, c)
 
