@@ -37,6 +37,11 @@ func (Cobweb) SideClosed(cube.Pos, cube.Pos, *world.Tx) bool {
 	return false
 }
 
+// HasLiquidDrops ...
+func (c Cobweb) HasLiquidDrops() bool {
+	return true
+}
+
 // BreakInfo ...
 func (c Cobweb) BreakInfo() BreakInfo {
 	return newBreakInfo(4, alwaysHarvestable, func(t item.Tool) bool {
@@ -44,6 +49,9 @@ func (c Cobweb) BreakInfo() BreakInfo {
 	}, func(t item.Tool, enchantments []item.Enchantment) []item.Stack {
 		if t.ToolType() == item.TypeShears || hasSilkTouch(enchantments) {
 			return []item.Stack{item.NewStack(c, 1)}
+		}
+		if t.ToolType() == item.TypeSword {
+			return []item.Stack{item.NewStack(item.String{}, 1)}
 		}
 		return nil
 	}).withBlastResistance(4)
