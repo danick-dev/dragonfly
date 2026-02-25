@@ -51,7 +51,8 @@ func (c Cobweb) BreakInfo() BreakInfo {
 			return []item.Stack{item.NewStack(c, 1)}
 		}
 		if t.ToolType() == item.TypeSword {
-			return []item.Stack{item.NewStack(item.String{}, 1)}
+			// TODO: Drop string once item.String is implemented.
+			return nil
 		}
 		return nil
 	}).withBlastResistance(4)
